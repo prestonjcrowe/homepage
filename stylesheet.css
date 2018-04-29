@@ -18,9 +18,13 @@ html, body {
   vertical-align: middle;
   margin: 0;
   padding: 0;
-  padding-top: 5vh;
   text-align: center;
   width: 100%;
+  padding-bottom: 20px;
+}
+
+.menuBar:first-of-type {
+  padding-top: 5vh;
 }
 
 a:link, a:visited {
