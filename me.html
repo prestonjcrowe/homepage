@@ -1,36 +1,71 @@
-
-
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>home</title>
-    <meta name="author" content="Preston Crowe">
-    <meta name="description" content="my home">
-    <link rel="shortcut icon" href="favicon.png">
-    <link rel="stylesheet" href="stylesheet.css" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
-  </head>
-  <body>
-    <div class="container">
 
-      <table class="menuBar">
-        <!-- <td><a href="https://my.uw.edu/">myUW</a></td>
-        <td><a href="https://norfolk.cs.washington.edu/mycse">cs</a></td>
-        <td><a href="https://coho.twa.rentmanager.com/">rent</a></td> -->
-      </table>
+<head>
+  <meta charset="UTF-8">
+  <title>(ﾉ´･ω･)ﾉ ﾐ ┻━┻</title>
+  <meta name="author" content="Preston Crowe">
+  <meta name="description" content="my home">
+  <link rel="shortcut icon" href="favicon.png">
+  <link rel="stylesheet" href="stylesheet.css" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+</head>
 
-      <img id="pic" src="img/me.jpeg">
-      <span id="note">(ﾉ´･ω･)ﾉ ﾐ ┻━┻</span>
+<body>
 
-      <ul id="classes">
-          <li><a href="https://canvas.uw.edu/courses/1372783">[finance]</a></li>
-        <li><a href="https://canvas.uw.edu/courses/1378646">[art history]</a></li>
-        <li><a href="https://canvas.uw.edu/courses/1373299">[linguistics]</a></li>
-        <li><a href="https://wjl.appfolio.com/connect/users/sign_in">[rent]</a></li>
-      </ul>
+  <div class="container">
 
-    </div>
+    <span id="note">(ﾉ´･ω･)ﾉ ﾐ ┻━┻</span>
+    <!-- <img id="pic" src="img/me.jpeg"> -->
 
-      </body>
+    <form autocomplete="off" onSubmit="return goto();">
+      <div class="autocomplete">  
+        <input id="goto-val" type="text" maxlength="55" class="box" placeholder="goto/" />
+      </div>
+    </form>
+
+  </div>
+  <div class="sideBar">
+    <ul id="links">
+      <li><a href="https://prestonc-eda.sol.i.extrahop.com/">eda</a></li>
+      <li><a href="https://mail.google.com/mail/u/0/">gmail</a></li>
+      <li><a href="https://calendar.google.com/calendar/u/0/r">calendar</a></li>
+      <li><a href="https://gitlab.i.extrahop.com/core/obd/-/wikis/Home#getting-started">gitlab</a></li>
+      <li><a href="https://magma.sea.i.extrahop.com/">magma</a></li>
+      <li><a href="https://simulate.sea.i.extrahop.com/extrahop/">simulate</a></li>
+      <li><a href="https://jira.i.extrahop.com/secure/RapidBoard.jspa?rapidView=302&projectKey=OBD">jira</a></li>
+      <li><a href="https://engine.sol.i.extrahop.com/ovirt-engine/">ovirt</a></li>
+      <li><a href="https://workforcenow.adp.com/">payroll</a></li>
+    </ul>
+  </div>
+  <script type="text/javascript" src="autocomplete.js"></script>
+  <script>
+    function goto() {
+      var gotoValue = document.getElementById('goto-val').value;
+      location = `http://goto/${gotoValue}/`;
+      return false;
+    }
+
+    function initSidebarList() {
+      const listItems = document.querySelectorAll('li');
+      console.log(listItems)
+      for(let i = 0; i < listItems.length; i++) {
+        let link = listItems[i].querySelector('a').href;
+        listItems[i].addEventListener("click", function (e) {
+          location = link;
+        })
+      }
+    }
+
+    /*An array containing all the shortlinks from goto.extrahop.com that I am interested in:*/
+    const shortlinks = ["hopcloud", "hopnet", "jira", "triggerdoc", "builds", "docs", "api", "bamboohr", "bundle", "calendar", "chat", "contacts", "drive", "lic", "generate_internal_license","gitlab", "network", "netflow"]
+    shortlinks.sort();
+    /*initiate the autocomplete function on the "goto-val" element, and pass along the links array as possible autocomplete values:*/
+    autocomplete(document.getElementById('goto-val'), shortlinks);
+    initSidebarList();
+  </script>
+</body>
+
 </html>
